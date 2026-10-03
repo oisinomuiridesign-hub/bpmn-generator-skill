@@ -1,0 +1,7 @@
+{
+  "name": "bpmn",
+  "version": "1.0.0",
+  "description": "Generate professional BPMN 2.0 business process maps in LucidChart from plain-language descriptions or uploaded documents.",
+  "author": { "name": "Oisin O'Muiri" },
+  "license": "MIT"
+}
