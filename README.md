@@ -15,8 +15,11 @@ You need the **Lucid / LucidChart connector** enabled in Claude. The skill calls
 **Skills CLI (Claude Code, Codex, Cursor, and other agents)**
 
 ```bash
-npx skills add oisinomuiridesign-hub/bpmn-generator-skill
+npx skills add oisinomuiridesign-hub/bpmn-generator-skill        # this project only
+npx skills add oisinomuiridesign-hub/bpmn-generator-skill -g     # all projects
 ```
+
+Needs Node.js 18+. The CLI asks which agents to install to.
 
 **claude.ai / Claude Desktop**
 
