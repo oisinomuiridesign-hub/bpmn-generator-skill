@@ -1,59 +1,55 @@
-# BPMN Generator — Claude Skill
+# BPMN Generator: Claude Skill
 
-Turn a plain-language process description (or an SOP / handbook / procedure doc) into a professional **BPMN 2.0 swim-lane diagram in LucidChart**.
+Turns a plain-language process description, or an SOP, handbook or procedure document, into a **BPMN 2.0 swim-lane diagram in LucidChart**.
 
-The skill encodes the rules so Claude doesn't improvise notation: correct BPMN element types, grid-based layout, lane-matched colours, clean connector routing, and labelled gateway branches.
+The skill gives Claude fixed rules so it doesn't make up its own notation. It covers BPMN element types, grid-based layout, task colours that match their lane, connector routing, and labels on every gateway branch.
+
+Follows the open [Agent Skills](https://agentskills.io) format, so it works in Claude Code, claude.ai, Claude Desktop and other agents that support skills.
 
 ## Requirements
 
-- Claude (Claude Code, Claude Desktop, or claude.ai) with the **Lucid / LucidChart connector** enabled — the skill calls `lucid_create_diagram_from_specification`.
+You need the **Lucid / LucidChart connector** enabled in Claude. The skill calls `lucid_create_diagram_from_specification`.
 
 ## Install
 
-### Claude Code (plugin marketplace)
-
-```
-/plugin marketplace add oisinomuiridesign-hub/bpmn-generator-skill
-/plugin install bpmn@oo-bpmn-skills
-```
-
-### Manual (Claude Code)
-
-Copy the skill folder into your skills directory:
+**Skills CLI (Claude Code, Codex, Cursor, and other agents)**
 
 ```bash
-git clone https://github.com/oisinomuiridesign-hub/bpmn-generator-skill.git
-cp -r bpmn-generator-skill/plugins/bpmn/skills/bpmn ~/.claude/skills/bpmn-generator
+npx skills add oisinomuiridesign-hub/bpmn-generator-skill
 ```
 
-### claude.ai / Claude Desktop
+**claude.ai / Claude Desktop**
 
-Zip `plugins/bpmn/skills/bpmn/` and upload it under **Settings → Capabilities → Skills**.
+1. Download `bpmn-generator.zip` from the [latest release](https://github.com/oisinomuiridesign-hub/bpmn-generator-skill/releases/latest).
+2. Go to **Settings → Capabilities → Skills → Upload skill** and pick the zip.
+
+**Manual (Claude Code)**
+
+```bash
+git clone https://github.com/oisinomuiridesign-hub/bpmn-generator-skill.git ~/.claude/skills/bpmn-generator
+```
 
 ## Use
 
-Just ask:
+Ask in plain language:
 
 - "Map our customer onboarding process"
-- "Turn this SOP into a BPMN diagram" (attach the doc)
+- "Turn this SOP into a BPMN diagram" (with the doc attached)
 - "Make a swim-lane diagram of how a refund gets approved"
 
-Claude asks a few targeted questions if the input is thin, then builds the diagram in your LucidChart account.
+If the input is thin, Claude asks a few targeted questions first. Then it builds the diagram in your LucidChart account.
 
 ## What's inside
 
 ```
-plugins/bpmn/skills/bpmn/
-├── SKILL.md                     # Entry point & workflow
-├── preferences/preference.md    # Default style & behaviour
-└── references/
-    ├── bpmn-elements.md         # BPMN → LucidChart type mapping + colour palette
-    ├── layout-strategy.md       # Grid, spacing, swim lanes, routing rules
-    ├── patterns.md              # Reusable JSON patterns (approval, parallel, loop-back…)
-    └── lucidchart-api.md        # Standard Import JSON format & gotchas
+SKILL.md                     # Entry point and workflow
+preferences/preference.md    # Default style and behaviour (edit to customise)
+references/
+├── bpmn-elements.md         # Mapping from BPMN elements to LucidChart types, plus colour palette
+├── layout-strategy.md       # Grid, spacing, swim lanes, routing rules
+├── patterns.md              # Reusable JSON patterns: approval, parallel, loop-back and more
+└── lucidchart-api.md        # Standard Import JSON format and known pitfalls
 ```
-
-Tweak `preferences/preference.md` to change default colours, flow direction, or title format.
 
 ## License
 
